@@ -6,7 +6,7 @@
 
 ```bash
 # How to install Dependencie
-$boss install https://github.com/academiadocodigo/Router4Delphi
+$ boss install https://github.com/academiadocodigo/Router4Delphi
 ```
 
 * []()
