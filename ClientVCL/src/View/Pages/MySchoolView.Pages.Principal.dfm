@@ -25,7 +25,6 @@ object PagePrincipal: TPagePrincipal
     Padding.Top = 35
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -8
     object Label1: TLabel
       Left = 0
       Top = 35

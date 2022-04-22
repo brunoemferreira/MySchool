@@ -3,21 +3,32 @@ unit MySchoolView.Pages.Usuarios;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Router4D.Interfaces;
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  MySchoolView.Pages.Form.Template,
+  Vcl.ExtCtrls,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  System.ImageList,
+  Vcl.ImgList,
+  Bind4D,
+  Bind4D.Attributes,
+  Bind4D.Types, Vcl.Imaging.pngimage;
 
 type
-  TPageUsuarios = class(TForm, iRouter4DComponent)
-    Panel1: TPanel;
-    Label1: TLabel;
-    procedure FormCreate(Sender: TObject);
+  [FormDefault('Cadastro de Usuários')]
+  TPageUsuarios = class(TFormTemplate)
   private
     { Private declarations }
   public
     { Public declarations }
-    function Render : TForm;
-    procedure UnRender;
   end;
 
 var
@@ -25,26 +36,6 @@ var
 
 implementation
 
-uses
-  MySchool.View.Styles.Colors;
-
 {$R *.dfm}
-
-{ TPageUsuarios }
-
-procedure TPageUsuarios.FormCreate(Sender: TObject);
-begin
-  Panel1.Color := STYLE_COLOR_BACKGROUND;
-end;
-
-function TPageUsuarios.Render: TForm;
-begin
-  Result := Self;
-end;
-
-procedure TPageUsuarios.UnRender;
-begin
-
-end;
 
 end.

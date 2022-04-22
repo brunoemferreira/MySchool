@@ -5,8 +5,9 @@ uses
   MySchool.View.Main in 'src\View\MySchool.View.Main.pas' {formPrincipal},
   MySchool.View.Styles.Colors in 'src\View\Styles\MySchool.View.Styles.Colors.pas',
   MySchoolView.Pages.Principal in 'src\View\Pages\MySchoolView.Pages.Principal.pas' {PagePrincipal},
-  MySchoolView.Pages.Usuarios in 'src\View\Pages\MySchoolView.Pages.Usuarios.pas' {PageUsuarios},
-  MySchool.View.Routers in 'src\View\Routers\MySchool.View.Routers.pas';
+  MySchool.View.Routers in 'src\View\Routers\MySchool.View.Routers.pas',
+  MySchoolView.Pages.Form.Template in 'src\View\Pages\MySchoolView.Pages.Form.Template.pas' {FormTemplate},
+  MySchoolView.Pages.Usuarios in 'src\View\Pages\MySchoolView.Pages.Usuarios.pas' {PageUsuarios};
 
 {$R *.res}
 

@@ -14,7 +14,7 @@ uses
   Vcl.Dialogs,
   Vcl.ExtCtrls,
   MySchool.View.Styles.Colors,
-  Vcl.Buttons;
+  Vcl.Buttons, Vcl.Imaging.pngimage, System.ImageList, Vcl.ImgList;
 
 type
   TformPrincipal = class(TForm)
@@ -24,11 +24,17 @@ type
     pnlTop: TPanel;
     pnlPrincipal: TPanel;
     pnlLogo: TPanel;
-    SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
+    Image1: TImage;
+    btnCourses: TImage;
+    btnExit: TImage;
+    btnClass: TImage;
+    btnSubjects: TImage;
+    btnYears: TImage;
+    btnStudents: TImage;
+    btnUsers: TImage;
     procedure FormCreate(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
-    procedure SpeedButton2Click(Sender: TObject);
+    procedure btnUsersClick(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
   private
     procedure ApplyStyle;
     { Private declarations }
@@ -45,18 +51,18 @@ uses Router4D, MySchoolView.Pages.Principal;
 
 {$R *.dfm}
 
+procedure TformPrincipal.btnUsersClick(Sender: TObject);
+begin
+  TRouter4D.Link.&To('Usuarios');
+end;
+
 procedure TformPrincipal.FormCreate(Sender: TObject);
 begin
   ApplyStyle;
   TRouter4D.Render<TPagePrincipal>.SetElement(pnlPrincipal, pnlMain);
 end;
 
-procedure TformPrincipal.SpeedButton1Click(Sender: TObject);
-begin
-  TRouter4D.Link.&To('Usuarios');
-end;
-
-procedure TformPrincipal.SpeedButton2Click(Sender: TObject);
+procedure TformPrincipal.Image1Click(Sender: TObject);
 begin
   TRouter4D.Link.&To('Principal');
 end;

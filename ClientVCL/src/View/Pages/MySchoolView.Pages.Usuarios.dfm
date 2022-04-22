@@ -1,47 +1,49 @@
-object PageUsuarios: TPageUsuarios
-  Left = 0
-  Top = 0
-  Align = alClient
-  BorderStyle = bsNone
-  Caption = 'P'#225'gina de Usu'#225'rios'
-  ClientHeight = 610
-  ClientWidth = 889
-  Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -12
-  Font.Name = 'Segoe UI'
-  Font.Style = []
-  OnCreate = FormCreate
+inherited PageUsuarios: TPageUsuarios
+  Caption = 'PageUsuarios'
   PixelsPerInch = 96
   TextHeight = 15
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 889
-    Height = 610
-    Align = alClient
-    BevelOuter = bvNone
-    Padding.Top = 35
-    ParentBackground = False
-    TabOrder = 0
-    ExplicitWidth = 873
-    ExplicitHeight = 571
-    object Label1: TLabel
-      Left = 0
-      Top = 35
-      Width = 889
-      Height = 32
-      Align = alTop
-      Alignment = taCenter
-      Caption = 'P'#225'gina de Usu'#225'rios'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      ParentFont = False
-      ExplicitWidth = 201
+  inherited pnlPrincipal: TPanel
+    inherited pnlTop: TPanel
+      inherited pnlButtonsTop: TPanel
+        inherited pnlButtonsTopContainer: TPanel
+          inherited Label2: TLabel
+            ExplicitLeft = 31
+            ExplicitHeight = 15
+          end
+          inherited Label1: TLabel
+            ExplicitLeft = 78
+            ExplicitTop = 0
+            ExplicitHeight = 15
+          end
+        end
+      end
+    end
+    inherited pnlMain: TPanel
+      ExplicitTop = 44
+      ExplicitHeight = 674
+      inherited pnlContent: TPanel
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 1153
+        ExplicitHeight = 674
+        inherited pnlContentTop: TPanel
+          Height = 48
+          ExplicitHeight = 48
+          inherited btnInsert: TSpeedButton
+            Height = 38
+          end
+          inherited Bevel1: TBevel
+            Height = 38
+          end
+          inherited btnRefresh: TSpeedButton
+            Height = 38
+          end
+          inherited pnlSearch: TPanel
+            Height = 38
+            ExplicitHeight = 38
+          end
+        end
+      end
     end
   end
 end
