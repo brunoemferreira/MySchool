@@ -7,17 +7,13 @@ uses
   Winapi.Messages,
   System.SysUtils,
   System.Variants,
+  System.JSON,
   System.Classes,
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
   Vcl.Dialogs,
   Vcl.ExtCtrls,
-  Router4D.Interfaces,
-  Bind4D,
-  Bind4D.Attributes,
-  Bind4D.Types,
-  RESTRequest4D,
   System.ImageList,
   Vcl.ImgList,
   Vcl.Buttons,
@@ -26,18 +22,18 @@ uses
   Data.DB,
   Vcl.Grids,
   Vcl.DBGrids,
+  Router4D.Interfaces,
+  Bind4D,
+  Bind4D.Attributes,
+  Bind4D.Types,
+  RESTRequest4D,
   MySchool.View.Styles.Colors,
-  FireDAC.Stan.Intf,
-  FireDAC.Stan.Option,
-  FireDAC.Stan.Param,
-  FireDAC.Stan.Error,
-  FireDAC.DatS,
-  FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf,
-  FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client;
+  MySchool.Model.DAO.Interfaces,
+  MySchool.Model.DAO.REST;
 
 type
+  TTypeOperation = (toNull, toPost, toPut);
+
   TFormTemplate = class(TForm, iRouter4DComponent)
 
     [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H5, STYLE_FONT_COLOR3, FONT_NAME )]
@@ -99,11 +95,10 @@ type
     dbGridContent: TDBGrid;
 
     pnlContentRightButtons: TPanel;
-    btnDelete: TSpeedButton;
     btnClose: TSpeedButton;
     btnSave: TSpeedButton;
-    FDMemTable1: TFDMemTable;
     DataSource1: TDataSource;
+    btnDelete: TSpeedButton;
 
     procedure FormCreate(Sender: TObject);
     procedure btnInsertClick(Sender: TObject);
@@ -112,13 +107,16 @@ type
     procedure btnCloseClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
     procedure btnDeleteClick(Sender: TObject);
+    procedure btnRefreshClick(Sender: TObject);
   private
     { Private declarations }
+    FTypeOperation : TTypeOperation;
     FEndPoint : String;
     FPK : String;
     FSort : String;
     FOrder : String;
     FTitle : String;
+    FDAO : iDAOInterface;
     procedure ApplyStyle;
     procedure GetEndPoint;
     procedure alterListForm;
@@ -133,9 +131,6 @@ var
   FormTemplate: TFormTemplate;
 
 implementation
-
-uses
-  System.JSON;
 
 {$R *.dfm}
 
@@ -157,21 +152,18 @@ end;
 
 procedure TFormTemplate.btnDeleteClick(Sender: TObject);
 begin
-  try
-    TRequest
-    .New
-      .BaseURL('http://localhost:9000'+ FEndPoint)
-      .Accept('application/json')
-    .Delete();
-  except
-
-  end;
+ FDAO.Delete;
 end;
 
 procedure TFormTemplate.btnInsertClick(Sender: TObject);
 begin
   alterListForm;
   TBind4D.New.Form(Self).ClearFieldForm;
+end;
+
+procedure TFormTemplate.btnRefreshClick(Sender: TObject);
+begin
+  GetEndPoint;
 end;
 
 procedure TFormTemplate.btnSaveClick(Sender: TObject);
@@ -196,12 +188,16 @@ end;
 
 procedure TFormTemplate.dbGridContentDblClick(Sender: TObject);
 begin
-  TBind4D.New.Form(Self).BindDataSetToForm(FDMemTable1);
+  TBind4D.New.Form(Self).BindDataSetToForm(FDAO.DataSet);
   alterListForm;
 end;
 
 procedure TFormTemplate.FormCreate(Sender: TObject);
 begin
+  FTypeOperation := toNull;
+
+  FDAO := TDAOREST.New(Self).DataSource(DataSource1);
+
   TBind4D
      .New
        .Form(Self)
@@ -220,13 +216,7 @@ end;
 
 procedure TFormTemplate.GetEndPoint;
 begin
-  TRequest
-    .New
-      .BaseURL('http://localhost:9000'+ FEndPoint)
-      .Accept('application/json')
-      .DataSetAdapter(FDMemTable1)
-    .Get;
-
+  FDAO.Get;
   formatList;
 end;
 
@@ -242,7 +232,7 @@ end;
 
 procedure TFormTemplate.formatList;
 begin
-  TBind4D.New.Form(Self).BindFormatListDataSet(FDMemTable1, dbGridContent);
+  TBind4D.New.Form(Self).BindFormatListDataSet(FDAO.DataSet, dbGridContent);
 end;
 
 procedure TFormTemplate.alterListForm;
