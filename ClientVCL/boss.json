@@ -7,6 +7,7 @@
 	"projects": [],
 	"dependencies": {
 		"https://github.com/academiadocodigo/bind4d": "^1.0.31",
-		"https://github.com/academiadocodigo/router4delphi": "^1.0.7"
+		"https://github.com/academiadocodigo/router4delphi": "^1.0.7",
+		"https://github.com/viniciussanchez/restrequest4delphi": "^v3.0.18"
 	}
 }

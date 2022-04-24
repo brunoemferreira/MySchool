@@ -13,6 +13,7 @@ object FormTemplate: TFormTemplate
   Font.Name = 'Segoe UI'
   Font.Style = []
   OnCreate = FormCreate
+  OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 15
   object pnlPrincipal: TPanel
@@ -42,27 +43,20 @@ object FormTemplate: TFormTemplate
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 0
-        ExplicitLeft = 100
-        ExplicitWidth = 953
-        ExplicitHeight = 73
         object pnlButtonsTopContainer: TPanel
           Left = 0
           Top = 0
           Width = 1153
-          Height = 43
+          Height = 44
           Align = alClient
           BevelOuter = bvNone
           ParentBackground = False
           TabOrder = 0
-          ExplicitLeft = 440
-          ExplicitTop = -3
-          ExplicitWidth = 353
-          ExplicitHeight = 41
           object Image1: TImage
             Left = 0
             Top = 0
             Width = 31
-            Height = 43
+            Height = 44
             Align = alLeft
             Center = True
             Picture.Data = {
@@ -93,7 +87,7 @@ object FormTemplate: TFormTemplate
             Left = 31
             Top = 0
             Width = 47
-            Height = 43
+            Height = 44
             Align = alLeft
             Caption = 'Home > '
             Font.Charset = DEFAULT_CHARSET
@@ -103,16 +97,15 @@ object FormTemplate: TFormTemplate
             Font.Style = []
             ParentFont = False
             Layout = tlCenter
-            ExplicitLeft = 84
-            ExplicitHeight = 41
+            ExplicitHeight = 15
           end
-          object Label1: TLabel
+          object lbTitle: TLabel
             Left = 78
             Top = 0
-            Width = 36
-            Height = 43
+            Width = 35
+            Height = 44
             Align = alLeft
-            Caption = 'Label1'
+            Caption = 'lbTitle'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
@@ -120,15 +113,13 @@ object FormTemplate: TFormTemplate
             Font.Style = [fsBold]
             ParentFont = False
             Layout = tlCenter
-            ExplicitLeft = 120
-            ExplicitTop = -2
-            ExplicitHeight = 41
+            ExplicitHeight = 15
           end
           object SpeedButton3: TSpeedButton
             Left = 1105
             Top = 0
             Width = 48
-            Height = 43
+            Height = 44
             Cursor = crHandPoint
             Hint = 'Configura'#231#245'es'
             Align = alRight
@@ -145,13 +136,12 @@ object FormTemplate: TFormTemplate
             ParentShowHint = False
             ShowHint = True
             ExplicitLeft = 1104
-            ExplicitHeight = 44
           end
           object SpeedButton2: TSpeedButton
             Left = 1057
             Top = 0
             Width = 48
-            Height = 43
+            Height = 44
             Cursor = crHandPoint
             Hint = 'Hist'#243'rico'
             Align = alRight
@@ -175,7 +165,7 @@ object FormTemplate: TFormTemplate
             Left = 1009
             Top = 0
             Width = 48
-            Height = 43
+            Height = 44
             Cursor = crHandPoint
             Hint = 'Relat'#243'rios'
             Align = alRight
@@ -195,17 +185,6 @@ object FormTemplate: TFormTemplate
             ExplicitHeight = 41
           end
         end
-        object Panel1: TPanel
-          Left = 0
-          Top = 43
-          Width = 1153
-          Height = 1
-          Align = alBottom
-          BevelOuter = bvNone
-          ParentBackground = False
-          TabOrder = 1
-          ExplicitTop = 42
-        end
       end
     end
     object pnlMain: TPanel
@@ -217,8 +196,6 @@ object FormTemplate: TFormTemplate
       BevelOuter = bvNone
       ParentBackground = False
       TabOrder = 1
-      ExplicitTop = 73
-      ExplicitHeight = 645
       object pnlContent: TPanel
         Left = 0
         Top = 0
@@ -236,10 +213,6 @@ object FormTemplate: TFormTemplate
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitLeft = 424
-        ExplicitTop = 344
-        ExplicitWidth = 185
-        ExplicitHeight = 41
         object pnlContentTop: TPanel
           Left = 0
           Top = 5
@@ -252,6 +225,7 @@ object FormTemplate: TFormTemplate
           Padding.Bottom = 1
           ParentBackground = False
           TabOrder = 0
+          ExplicitTop = 6
           object Bevel1: TBevel
             Left = 0
             Top = 1
@@ -271,8 +245,6 @@ object FormTemplate: TFormTemplate
             BevelOuter = bvNone
             ParentBackground = False
             TabOrder = 0
-            ExplicitTop = 5
-            ExplicitHeight = 37
             object lbSearch: TLabel
               Left = 0
               Top = 0
@@ -310,9 +282,6 @@ object FormTemplate: TFormTemplate
             Padding.Bottom = 5
             ParentBackground = False
             TabOrder = 1
-            ExplicitLeft = 320
-            ExplicitTop = 6
-            ExplicitHeight = 41
             object btnInsert: TSpeedButton
               Left = 0
               Top = 5
@@ -332,6 +301,7 @@ object FormTemplate: TFormTemplate
               ParentFont = False
               ParentShowHint = False
               ShowHint = True
+              OnClick = btnInsertClick
               ExplicitLeft = 8
               ExplicitTop = 0
               ExplicitHeight = 41
@@ -371,10 +341,6 @@ object FormTemplate: TFormTemplate
           Padding.Bottom = 35
           ParentBackground = False
           TabOrder = 1
-          ExplicitLeft = 448
-          ExplicitTop = 352
-          ExplicitWidth = 185
-          ExplicitHeight = 41
           object pnlContentRight: TPanel
             Left = 568
             Top = 0
@@ -384,7 +350,86 @@ object FormTemplate: TFormTemplate
             BevelOuter = bvNone
             ParentBackground = False
             TabOrder = 0
-            ExplicitHeight = 629
+            ExplicitLeft = 574
+            ExplicitTop = 2
+            object pnlContentRightButtons: TPanel
+              Left = 0
+              Top = 561
+              Width = 580
+              Height = 33
+              Align = alBottom
+              BevelOuter = bvNone
+              Padding.Left = 3
+              Padding.Top = 1
+              Padding.Bottom = 1
+              ParentBackground = False
+              TabOrder = 0
+              ExplicitLeft = 6
+              object btnDelete: TSpeedButton
+                Left = 3
+                Top = 1
+                Width = 134
+                Height = 31
+                Cursor = crHandPoint
+                Hint = 'Excluir'
+                Align = alLeft
+                Caption = 'Excluir'
+                ImageIndex = 2
+                Images = ImageList2
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clGray
+                Font.Height = -12
+                Font.Name = 'Segoe UI'
+                Font.Style = []
+                ParentFont = False
+                ParentShowHint = False
+                ShowHint = True
+                OnClick = btnDeleteClick
+                ExplicitLeft = 6
+              end
+              object btnClose: TSpeedButton
+                Left = 446
+                Top = 1
+                Width = 134
+                Height = 31
+                Cursor = crHandPoint
+                Hint = 'Fechar'
+                Align = alRight
+                Caption = 'Fechar'
+                Images = ImageList2
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clGray
+                Font.Height = -12
+                Font.Name = 'Segoe UI'
+                Font.Style = []
+                ParentFont = False
+                ParentShowHint = False
+                ShowHint = True
+                OnClick = btnCloseClick
+                ExplicitLeft = 259
+              end
+              object btnSave: TSpeedButton
+                Left = 312
+                Top = 1
+                Width = 134
+                Height = 31
+                Cursor = crHandPoint
+                Hint = 'Salvar'
+                Align = alRight
+                Caption = 'Salvar'
+                Images = ImageList2
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clGray
+                Font.Height = -12
+                Font.Name = 'Segoe UI'
+                Font.Style = []
+                ParentFont = False
+                ParentShowHint = False
+                ShowHint = True
+                OnClick = btnSaveClick
+                ExplicitLeft = 3
+              end
+            end
           end
           object dbGridContent: TDBGrid
             Left = 0
@@ -393,13 +438,21 @@ object FormTemplate: TFormTemplate
             Height = 594
             Align = alClient
             BorderStyle = bsNone
+            DataSource = DataSource1
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clDefault
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
             Options = [dgTitles, dgIndicator, dgColumnResize, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+            ParentFont = False
             TabOrder = 1
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clDefault
             TitleFont.Height = -12
             TitleFont.Name = 'Segoe UI'
-            TitleFont.Style = []
+            TitleFont.Style = [fsBold]
+            OnDblClick = dbGridContentDblClick
           end
         end
       end
@@ -859,5 +912,21 @@ object FormTemplate: TFormTemplate
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
+  end
+  object FDMemTable1: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 768
+    Top = 344
+  end
+  object DataSource1: TDataSource
+    DataSet = FDMemTable1
+    Left = 856
+    Top = 345
   end
 end

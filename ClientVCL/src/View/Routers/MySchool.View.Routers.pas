@@ -18,7 +18,7 @@ implementation
 uses
    Router4D,
    MySchoolView.Pages.Principal,
-   MySchoolView.Pages.Usuarios;
+   MySchool.View.Pages.Usuarios;
 
 { TRouters }
 

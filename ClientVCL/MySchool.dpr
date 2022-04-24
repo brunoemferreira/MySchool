@@ -7,7 +7,7 @@ uses
   MySchoolView.Pages.Principal in 'src\View\Pages\MySchoolView.Pages.Principal.pas' {PagePrincipal},
   MySchool.View.Routers in 'src\View\Routers\MySchool.View.Routers.pas',
   MySchoolView.Pages.Form.Template in 'src\View\Pages\MySchoolView.Pages.Form.Template.pas' {FormTemplate},
-  MySchoolView.Pages.Usuarios in 'src\View\Pages\MySchoolView.Pages.Usuarios.pas' {PageUsuarios};
+  MySchool.View.Pages.Usuarios in 'src\View\Pages\MySchool.View.Pages.Usuarios.pas' {PageUsuarios};
 
 {$R *.res}
 

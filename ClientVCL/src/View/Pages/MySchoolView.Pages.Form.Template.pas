@@ -17,47 +17,112 @@ uses
   Bind4D,
   Bind4D.Attributes,
   Bind4D.Types,
+  RESTRequest4D,
   System.ImageList,
   Vcl.ImgList,
   Vcl.Buttons,
-  Vcl.StdCtrls, Vcl.Imaging.pngimage, Data.DB, Vcl.Grids, Vcl.DBGrids;
-
+  Vcl.StdCtrls,
+  Vcl.Imaging.pngimage,
+  Data.DB,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  MySchool.View.Styles.Colors,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client;
 
 type
   TFormTemplate = class(TForm, iRouter4DComponent)
+
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H5, STYLE_FONT_COLOR3, FONT_NAME )]
     pnlPrincipal: TPanel;
+
+    [ComponentBindStyle( STYLE_COLOR_C1, FONT_H5, STYLE_FONT_COLOR3, FONT_NAME )]
     pnlTop: TPanel;
+
+    [ComponentBindStyle( STYLE_COLOR_C1, FONT_H5, STYLE_FONT_COLOR3, FONT_NAME )]
     pnlButtonsTop: TPanel;
-    ImageList1: TImageList;
+
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H5, STYLE_FONT_COLOR3, FONT_NAME )]
     pnlMain: TPanel;
+
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H5, STYLE_FONT_COLOR3, FONT_NAME )]
     pnlContent: TPanel;
+
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H5, STYLE_FONT_COLOR3, FONT_NAME )]
     pnlContentTop: TPanel;
+
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H5, STYLE_FONT_COLOR3, FONT_NAME )]
+    pnlSearch: TPanel;
+
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H5, STYLE_FONT_COLOR3, FONT_NAME )]
+    pnlButtons: TPanel;
+
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H5, STYLE_FONT_COLOR3, FONT_NAME )]
+    pnlContentIntern: TPanel;
+
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H5, STYLE_FONT_COLOR3, FONT_NAME )]
+    pnlContentRight: TPanel;
+
     pnlButtonsTopContainer: TPanel;
-    Image1: TImage;
+
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H6, STYLE_COLOR_BACKGROUND_TOP, FONT_NAME )]
+    lbTitle: TLabel;
+
+    lbSearch: TLabel;
+
     Label2: TLabel;
-    Label1: TLabel;
-    Panel1: TPanel;
+
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H8, STYLE_FONT_COLOR3, FONT_NAME )]
+    edtSearch: TEdit;
+
+    ImageList1: TImageList;
+    ImageList2: TImageList;
+    Image1: TImage;
+
     SpeedButton3: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton1: TSpeedButton;
-    Bevel1: TBevel;
-    ImageList2: TImageList;
-    pnlSearch: TPanel;
-    edtSearch: TEdit;
-    lbSearch: TLabel;
-    pnlButtons: TPanel;
+
     btnInsert: TSpeedButton;
     btnRefresh: TSpeedButton;
-    pnlContentIntern: TPanel;
-    pnlContentRight: TPanel;
+
+    Bevel1: TBevel;
+
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H6, STYLE_FONT_COLOR4, FONT_NAME )]
     dbGridContent: TDBGrid;
+
+    pnlContentRightButtons: TPanel;
+    btnDelete: TSpeedButton;
+    btnClose: TSpeedButton;
+    btnSave: TSpeedButton;
+    FDMemTable1: TFDMemTable;
+    DataSource1: TDataSource;
+
     procedure FormCreate(Sender: TObject);
+    procedure btnInsertClick(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure dbGridContentDblClick(Sender: TObject);
+    procedure btnCloseClick(Sender: TObject);
+    procedure btnSaveClick(Sender: TObject);
+    procedure btnDeleteClick(Sender: TObject);
   private
     { Private declarations }
     FEndPoint : String;
     FPK : String;
+    FSort : String;
+    FOrder : String;
     FTitle : String;
     procedure ApplyStyle;
+    procedure GetEndPoint;
+    procedure alterListForm;
+    procedure formatList;
   public
     { Public declarations }
     function Render : TForm;
@@ -70,44 +135,99 @@ var
 implementation
 
 uses
-  MySchool.View.Styles.Colors;
+  System.JSON;
 
 {$R *.dfm}
 
 procedure TFormTemplate.ApplyStyle;
 begin
-  Label1.Caption := FTitle;
+  lbTitle.Caption := FTitle;
   pnlContentRight.Visible := False;
+  pnlContentRight.Align := TAlign.alClient;
 
-  pnlPrincipal.Color := STYLE_COLOR_BACKGROUND;
-  pnlTop.Color  := STYLE_COLOR_C1;
-  pnlMain.Color := STYLE_COLOR_BACKGROUND;
-  pnlButtonsTop.Color := STYLE_COLOR_C1;
-  pnlContent.Color := STYLE_COLOR_BACKGROUND;
-  pnlContentTop.Color := STYLE_COLOR_BACKGROUND;
- // pnlContentTopLineBottom.Color := STYLE_COLOR_C2;
-  pnlSearch.Color  := STYLE_COLOR_BACKGROUND;
-  pnlButtons.Color := STYLE_COLOR_BACKGROUND;
-  pnlContentIntern.Color := STYLE_COLOR_BACKGROUND;
-  pnlContentRight.Color := STYLE_COLOR_BACKGROUND;
-
-  Label1.Font.Size  := FONT_H5;
-  Label1.Font.Color := STYLE_FONT_COLOR3;
-  Label1.Font.Name  := 'Segoe UI';
-
-  dbGridContent.Font.Size := FONT_H5;
-  dbGridContent.Font.Color := STYLE_FONT_COLOR4;
-  dbGridContent.Font.Name := 'Segoe UI';
-  dbGridContent.TitleFont.Size  := FONT_H5;
+  dbGridContent.TitleFont.Size  := FONT_H7;
   dbGridContent.TitleFont.Name  := 'Segoe UI';
   dbGridContent.TitleFont.Color := STYLE_FONT_COLOR4 ;
+end;
 
+procedure TFormTemplate.btnCloseClick(Sender: TObject);
+begin
+  alterListForm;
+end;
+
+procedure TFormTemplate.btnDeleteClick(Sender: TObject);
+begin
+  try
+    TRequest
+    .New
+      .BaseURL('http://localhost:9000'+ FEndPoint)
+      .Accept('application/json')
+    .Delete();
+  except
+
+  end;
+end;
+
+procedure TFormTemplate.btnInsertClick(Sender: TObject);
+begin
+  alterListForm;
+  TBind4D.New.Form(Self).ClearFieldForm;
+end;
+
+procedure TFormTemplate.btnSaveClick(Sender: TObject);
+var
+  aJson : TJsonObject;
+begin
+  aJson := TBind4D.New.Form(Self).FormToJson(fbPost);
+  try
+    TRequest
+    .New
+      .BaseURL('http://localhost:9000'+ FEndPoint)
+      .Accept('application/json')
+      .AddBody(aJson.ToString)
+    .Post;
+  finally
+    aJson.Free;
+  end;
+
+  alterListForm;
+  GetEndPoint;
+end;
+
+procedure TFormTemplate.dbGridContentDblClick(Sender: TObject);
+begin
+  TBind4D.New.Form(Self).BindDataSetToForm(FDMemTable1);
+  alterListForm;
 end;
 
 procedure TFormTemplate.FormCreate(Sender: TObject);
 begin
-  TBind4D.New.Form(Self).BindFormDefault(FTitle);
+  TBind4D
+     .New
+       .Form(Self)
+       .BindFormDefault(FTitle)
+       .BindFormRest(FEndPoint, FPK, FSort, FOrder)
+       .SetStyleComponents;
+
   ApplyStyle;
+
+end;
+
+procedure TFormTemplate.FormResize(Sender: TObject);
+begin
+  GetEndPoint;
+end;
+
+procedure TFormTemplate.GetEndPoint;
+begin
+  TRequest
+    .New
+      .BaseURL('http://localhost:9000'+ FEndPoint)
+      .Accept('application/json')
+      .DataSetAdapter(FDMemTable1)
+    .Get;
+
+  formatList;
 end;
 
 function TFormTemplate.Render: TForm;
@@ -118,6 +238,17 @@ end;
 procedure TFormTemplate.UnRender;
 begin
   //
+end;
+
+procedure TFormTemplate.formatList;
+begin
+  TBind4D.New.Form(Self).BindFormatListDataSet(FDMemTable1, dbGridContent);
+end;
+
+procedure TFormTemplate.alterListForm;
+begin
+  pnlContentRight.Visible := not pnlContentRight.Visible;
+  dbGridContent.Visible := not dbGridContent.Visible;
 end;
 
 end.

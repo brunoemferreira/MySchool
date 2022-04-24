@@ -34,9 +34,9 @@ object formPrincipal: TformPrincipal
       TabOrder = 0
       object btnCourses: TImage
         Left = 0
-        Top = 110
+        Top = 107
         Width = 55
-        Height = 45
+        Height = 42
         Cursor = crHandPoint
         Hint = 'Cadastro de Cursos'
         Align = alTop
@@ -71,7 +71,7 @@ object formPrincipal: TformPrincipal
           30342D32325431303A32303A31322B30303A30307733E6880000000049454E44
           AE426082}
         ShowHint = True
-        ExplicitTop = 111
+        ExplicitTop = 108
       end
       object btnExit: TImage
         Left = 0
@@ -107,9 +107,9 @@ object formPrincipal: TformPrincipal
       end
       object btnClass: TImage
         Left = 0
-        Top = 155
+        Top = 149
         Width = 55
-        Height = 45
+        Height = 42
         Cursor = crHandPoint
         Hint = 'Cadastro de Turmas'
         Align = alTop
@@ -144,13 +144,13 @@ object formPrincipal: TformPrincipal
           2D30342D32325431303A32373A33392B30303A3030D5CDAE760000000049454E
           44AE426082}
         ShowHint = True
-        ExplicitTop = 157
+        ExplicitTop = 151
       end
       object btnSubjects: TImage
         Left = 0
-        Top = 200
+        Top = 191
         Width = 55
-        Height = 45
+        Height = 42
         Cursor = crHandPoint
         Hint = 'Cadastro de Mat'#233'rias'
         Align = alTop
@@ -188,13 +188,13 @@ object formPrincipal: TformPrincipal
           74455874646174653A6D6F6469667900323032322D30342D32325431303A3330
           3A33382B30303A303050E8617B0000000049454E44AE426082}
         ShowHint = True
-        ExplicitTop = 203
+        ExplicitTop = 194
       end
       object btnYears: TImage
         Left = 0
         Top = 65
         Width = 55
-        Height = 45
+        Height = 42
         Cursor = crHandPoint
         Hint = 'Cadastro de Anos'
         Align = alTop
@@ -227,9 +227,9 @@ object formPrincipal: TformPrincipal
       end
       object btnStudents: TImage
         Left = 0
-        Top = 245
+        Top = 233
         Width = 55
-        Height = 45
+        Height = 42
         Cursor = crHandPoint
         Hint = 'Cadastro de Alunos'
         Align = alTop
@@ -261,7 +261,7 @@ object formPrincipal: TformPrincipal
           7900323032322D30342D32325431303A31343A35302B30303A3030F4EF3F2000
           00000049454E44AE426082}
         ShowHint = True
-        ExplicitTop = 249
+        ExplicitTop = 237
       end
       object btnUsers: TImage
         Left = 0
@@ -368,7 +368,7 @@ object formPrincipal: TformPrincipal
         Left = 0
         Top = 0
         Width = 1234
-        Height = 65
+        Height = 55
         Align = alTop
         BevelOuter = bvNone
         ParentBackground = False
@@ -376,13 +376,15 @@ object formPrincipal: TformPrincipal
       end
       object pnlPrincipal: TPanel
         Left = 0
-        Top = 65
+        Top = 55
         Width = 1234
-        Height = 648
+        Height = 658
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 1
+        ExplicitTop = 65
+        ExplicitHeight = 648
       end
     end
   end

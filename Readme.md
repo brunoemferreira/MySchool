@@ -12,14 +12,21 @@ $ boss install https://github.com/academiadocodigo/Router4Delphi
 ```
 
 ### Bind4D - [Bind4Delphi](https://github.com/academiadocodigo/Bind4D)
-
 >
 ```bash
 # How to install Dependencie
 $ boss install https://github.com/academiadocodigo/Bind4D
 ```
 
-* []()
+### RESTRequest4D -  [RESTRequest4Delphi](https://github.com/viniciussanchez/RESTRequest4Delphi)
+
+> Biblioteca para consumir serviço REST
+
+```bash
+# How to install Dependencie
+$ boss install https://github.com/viniciussanchez/RESTRequest4Delphi
+```
+
 * []()
 * []()
 * []()
