@@ -15,6 +15,15 @@ type
       function Delete : iDAOInterface;
       function DataSource ( aValue : TDataSource) : iDAOInterface;
       function DataSet : TDataSet;
+      function AddParam ( akey: String; aValue : String ) : iDAOInterface;
+      function Page : Integer; overload;
+      function Page ( aValue: Integer) : iDAOInterface; overload;
+      function Limit : Integer ; overload;
+      function Limit ( aValue: Integer) : iDAOInterface; overload;
+      function Total ( aValue: Integer) : iDAOInterface; overload;
+      function Total : Integer ; overload;
+      function Pages ( aValue: Integer) : iDAOInterface; overload;
+      function Pages : Integer ; overload;
    End;
 
    implementation

@@ -71,7 +71,8 @@ procedure TformPrincipal.ApplyStyle;
 begin
   pnlPrincipal.Color := STYLE_COLOR_BACKGROUND;
  // pnlTop.Color := STYLE_COLOR_BACKGROUND_TOP;
-  pnlTop.Color := STYLE_COLOR_LIGHT_GRAY;
+ // pnlTop.Color := STYLE_COLOR_LIGHT_GRAY;
+  pnlTop.Color := STYLE_COLOR_BACKGROUND_MENU;
   pnlLogo.Color := STYLE_COLOR_BACKGROUND_DESTAK;
   pnlMenu.Color := STYLE_COLOR_BACKGROUND_MENU;
   Self.Font.Color := STYLE_FONT_COLOR;

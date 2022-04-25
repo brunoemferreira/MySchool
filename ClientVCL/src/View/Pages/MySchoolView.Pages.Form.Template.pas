@@ -99,6 +99,12 @@ type
     btnSave: TSpeedButton;
     DataSource1: TDataSource;
     btnDelete: TSpeedButton;
+    pnlContentLeft: TPanel;
+    pnContentLeftBottom: TPanel;
+    btnPrevious: TSpeedButton;
+    lbPagination: TLabel;
+    btnNext: TSpeedButton;
+
 
     procedure FormCreate(Sender: TObject);
     procedure btnInsertClick(Sender: TObject);
@@ -108,6 +114,10 @@ type
     procedure btnSaveClick(Sender: TObject);
     procedure btnDeleteClick(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
+    procedure dbGridContentTitleClick(Column: TColumn);
+    procedure edtSearchKeyPress(Sender: TObject; var Key: Char);
+    procedure btnPreviousClick(Sender: TObject);
+    procedure btnNextClick(Sender: TObject);
   private
     { Private declarations }
     FTypeOperation : TTypeOperation;
@@ -117,10 +127,13 @@ type
     FOrder : String;
     FTitle : String;
     FDAO : iDAOInterface;
+    FPage : Integer;
     procedure ApplyStyle;
     procedure GetEndPoint;
     procedure alterListForm;
     procedure formatList;
+    procedure restOperationPost;
+    procedure restOperationPut;
   public
     { Public declarations }
     function Render : TForm;
@@ -148,15 +161,20 @@ end;
 procedure TFormTemplate.btnCloseClick(Sender: TObject);
 begin
   alterListForm;
+  FTypeOperation := toNull;
 end;
 
 procedure TFormTemplate.btnDeleteClick(Sender: TObject);
 begin
- FDAO.Delete;
+  FDAO.Delete;
+  GetEndPoint;
+  alterListForm;
+  FTypeOperation := toNull;
 end;
 
 procedure TFormTemplate.btnInsertClick(Sender: TObject);
 begin
+  FTypeOperation := toPost;
   alterListForm;
   TBind4D.New.Form(Self).ClearFieldForm;
 end;
@@ -167,33 +185,51 @@ begin
 end;
 
 procedure TFormTemplate.btnSaveClick(Sender: TObject);
-var
-  aJson : TJsonObject;
 begin
-  aJson := TBind4D.New.Form(Self).FormToJson(fbPost);
-  try
-    TRequest
-    .New
-      .BaseURL('http://localhost:9000'+ FEndPoint)
-      .Accept('application/json')
-      .AddBody(aJson.ToString)
-    .Post;
-  finally
-    aJson.Free;
+  case FTypeOperation of
+     toPost : restOperationPost;
+     toPut :  restOperationPut;
   end;
 
-  alterListForm;
-  GetEndPoint;
 end;
 
 procedure TFormTemplate.dbGridContentDblClick(Sender: TObject);
 begin
+  FTypeOperation := toPut;
   TBind4D.New.Form(Self).BindDataSetToForm(FDAO.DataSet);
   alterListForm;
 end;
 
+procedure TFormTemplate.dbGridContentTitleClick(Column: TColumn);
+begin
+  FDAO
+    .AddParam('sort', Column.Field.FullName)
+    .AddParam('order', FOrder)
+    .Page(1)
+  .Get;
+  if FOrder = 'asc' then FOrder := 'desc' else FOrder := 'asc';
+  formatList;
+end;
+
+procedure TFormTemplate.edtSearchKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #$D then
+  begin
+    FDAO
+      .AddParam('sort', FSort)
+      .AddParam('order', FOrder)
+      .AddParam('searchfields', TBind4D.New.Form(Self).GetFieldsByType(fbGet))
+      .AddParam('searchvalue', edtSearch.Text)
+      .Page(1)
+    .Get;
+
+    formatList;
+  end;
+end;
+
 procedure TFormTemplate.FormCreate(Sender: TObject);
 begin
+  FPage := 1;
   FTypeOperation := toNull;
 
   FDAO := TDAOREST.New(Self).DataSource(DataSource1);
@@ -206,7 +242,6 @@ begin
        .SetStyleComponents;
 
   ApplyStyle;
-
 end;
 
 procedure TFormTemplate.FormResize(Sender: TObject);
@@ -216,13 +251,51 @@ end;
 
 procedure TFormTemplate.GetEndPoint;
 begin
-  FDAO.Get;
+  FDAO
+     .AddParam('sort', FSort)
+     .AddParam('order', FOrder)
+     .Page(FPage)
+  .Get;
   formatList;
 end;
 
 function TFormTemplate.Render: TForm;
 begin
   Result := Self;
+end;
+
+procedure TFormTemplate.restOperationPost;
+begin
+  FDAO.Post;
+  GetEndPoint;
+  alterListForm;
+  FTypeOperation := toNull;
+end;
+
+procedure TFormTemplate.restOperationPut;
+begin
+  FDAO.Put;
+  GetEndPoint;
+  alterListForm;
+  FTypeOperation := toNull;
+end;
+
+procedure TFormTemplate.btnNextClick(Sender: TObject);
+begin
+  if FDAO.Page < FDAO.Pages then
+  begin
+    FPage := FDAO.Page + 1;
+    GetEndPoint;
+  end;
+end;
+
+procedure TFormTemplate.btnPreviousClick(Sender: TObject);
+begin
+  if FDAO.Page > 1 then
+  begin
+    FPage := FDAO.Page -1;
+    GetEndPoint;
+  end;
 end;
 
 procedure TFormTemplate.UnRender;
@@ -233,12 +306,13 @@ end;
 procedure TFormTemplate.formatList;
 begin
   TBind4D.New.Form(Self).BindFormatListDataSet(FDAO.DataSet, dbGridContent);
+  lbPagination.Caption := 'Página ' + FDAO.Page.ToString + ' de ' + FDAO.Pages.ToString;
 end;
 
 procedure TFormTemplate.alterListForm;
 begin
   pnlContentRight.Visible := not pnlContentRight.Visible;
-  dbGridContent.Visible := not dbGridContent.Visible;
+  pnlContentLeft.Visible  := not pnlContentLeft.Visible;
 end;
 
 end.

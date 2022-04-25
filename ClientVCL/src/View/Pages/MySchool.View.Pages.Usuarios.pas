@@ -78,8 +78,13 @@ type
     [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H8, STYLE_FONT_COLOR3, FONT_NAME, teCell )]
     edtPhone: TEdit;
 
+    [FieldJsonBind('picture')]
+    [FieldDataSetBind('picture', ftString, False)]
+    Image2: TImage;
+
     TabSheet1: TTabSheet;
     StackPanel1: TStackPanel;
+    StackPanel2: TStackPanel;
   private
     { Private declarations }
   public

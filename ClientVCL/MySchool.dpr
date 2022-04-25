@@ -9,7 +9,8 @@ uses
   MySchoolView.Pages.Form.Template in 'src\View\Pages\MySchoolView.Pages.Form.Template.pas' {FormTemplate},
   MySchool.View.Pages.Usuarios in 'src\View\Pages\MySchool.View.Pages.Usuarios.pas' {PageUsuarios},
   MySchool.Model.DAO.Interfaces in 'src\Model\DAO\MySchool.Model.DAO.Interfaces.pas',
-  MySchool.Model.DAO.REST in 'src\Model\DAO\MySchool.Model.DAO.REST.pas';
+  MySchool.Model.DAO.REST in 'src\Model\DAO\MySchool.Model.DAO.REST.pas',
+  MySchool.Model.Services.Register in 'src\Model\Services\MySchool.Model.Services.Register.pas';
 
 {$R *.res}
 

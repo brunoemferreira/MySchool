@@ -5,9 +5,6 @@ inherited PageUsuarios: TPageUsuarios
   inherited pnlPrincipal: TPanel
     inherited pnlMain: TPanel
       inherited pnlContent: TPanel
-        inherited pnlContentTop: TPanel
-          ExplicitTop = 5
-        end
         inherited pnlContentIntern: TPanel
           inherited pnlContentRight: TPanel
             Left = 296
@@ -16,21 +13,20 @@ inherited PageUsuarios: TPageUsuarios
             Padding.Right = 5
             Padding.Bottom = 5
             ExplicitLeft = 296
-            ExplicitTop = 0
             ExplicitWidth = 852
             inherited pnlContentRightButtons: TPanel
               Left = 5
-              Top = 556
+              Top = 586
               Width = 842
               ExplicitLeft = 5
-              ExplicitTop = 556
+              ExplicitTop = 586
               ExplicitWidth = 842
               inherited btnClose: TSpeedButton
-                Left = 708
+                Left = 753
                 ExplicitLeft = 708
               end
               inherited btnSave: TSpeedButton
-                Left = 574
+                Left = 664
                 ExplicitLeft = 574
               end
             end
@@ -38,17 +34,17 @@ inherited PageUsuarios: TPageUsuarios
               Left = 5
               Top = 0
               Width = 842
-              Height = 556
+              Height = 586
               ActivePage = TabSheet1
               Align = alClient
               TabOrder = 1
               object TabSheet1: TTabSheet
                 Caption = 'Cadastro'
                 object StackPanel1: TStackPanel
-                  Left = 0
+                  Left = 289
                   Top = 0
                   Width = 393
-                  Height = 526
+                  Height = 556
                   Align = alLeft
                   BevelOuter = bvNone
                   ControlCollection = <
@@ -135,11 +131,58 @@ inherited PageUsuarios: TPageUsuarios
                     TabOrder = 3
                   end
                 end
+                object StackPanel2: TStackPanel
+                  Left = 0
+                  Top = 0
+                  Width = 289
+                  Height = 556
+                  Align = alLeft
+                  BevelOuter = bvNone
+                  ControlCollection = <
+                    item
+                      Control = Image2
+                    end>
+                  HorizontalPositioning = sphpFill
+                  Padding.Left = 20
+                  Padding.Top = 20
+                  Padding.Right = 20
+                  TabOrder = 1
+                  object Image2: TImage
+                    Left = 20
+                    Top = 20
+                    Width = 249
+                    Height = 241
+                  end
+                end
               end
             end
           end
-          inherited dbGridContent: TDBGrid
+          inherited pnlContentLeft: TPanel
             Width = 296
+            ExplicitWidth = 296
+            inherited pnContentLeftBottom: TPanel
+              Width = 296
+              ExplicitLeft = -1
+              ExplicitTop = 592
+              ExplicitWidth = 296
+              inherited btnPrevious: TSpeedButton
+                Left = 197
+                ExplicitLeft = 182
+                ExplicitTop = 0
+              end
+              inherited lbPagination: TLabel
+                Left = 220
+                ExplicitLeft = 214
+                ExplicitHeight = 41
+              end
+              inherited btnNext: TSpeedButton
+                Left = 273
+                ExplicitLeft = 276
+              end
+            end
+            inherited dbGridContent: TDBGrid
+              Width = 296
+            end
           end
         end
       end

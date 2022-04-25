@@ -383,8 +383,6 @@ object formPrincipal: TformPrincipal
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 1
-        ExplicitTop = 65
-        ExplicitHeight = 648
       end
     end
   end

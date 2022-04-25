@@ -27,10 +27,14 @@ $ boss install https://github.com/academiadocodigo/Bind4D
 $ boss install https://github.com/viniciussanchez/RESTRequest4Delphi
 ```
 
-* []()
-* []()
-* []()
-* []()
+### Dataset Serialize - [dataset-serialize](https://github.com/viniciussanchez/dataset-serialize)
+
+> Biblioteca para converter json em dataset e vice versa
+
+```bash
+# How to install Dependencie
+$ boss install https://github.com/viniciussanchez/dataset-serialize
+```
 
 ## Links Úteis
 
