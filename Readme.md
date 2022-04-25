@@ -36,6 +36,12 @@ $ boss install https://github.com/viniciussanchez/RESTRequest4Delphi
 $ boss install https://github.com/viniciussanchez/dataset-serialize
 ```
 
+### Fortes Report CE - [fortesreport-ce](https://github.com/fortesinformatica/fortesreport-ce)
+
+> Biblioteca para geração de relatórios
+
+Para instalar baixe o repositório do github e execute o instalador
+
 ## Links Úteis
 
 * [HashLoad Boss - Gerenciador de Dependências](https://github.com/HashLoad/boss)

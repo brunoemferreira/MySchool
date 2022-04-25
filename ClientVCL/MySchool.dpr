@@ -1,5 +1,9 @@
 program MySchool;
 
+
+
+{$R *.dres}
+
 uses
   Vcl.Forms,
   MySchool.View.Main in 'src\View\MySchool.View.Main.pas' {formPrincipal},
@@ -10,7 +14,8 @@ uses
   MySchool.View.Pages.Usuarios in 'src\View\Pages\MySchool.View.Pages.Usuarios.pas' {PageUsuarios},
   MySchool.Model.DAO.Interfaces in 'src\Model\DAO\MySchool.Model.DAO.Interfaces.pas',
   MySchool.Model.DAO.REST in 'src\Model\DAO\MySchool.Model.DAO.REST.pas',
-  MySchool.Model.Services.Register in 'src\Model\Services\MySchool.Model.Services.Register.pas';
+  MySchool.Model.Services.Register in 'src\Model\Services\MySchool.Model.Services.Register.pas',
+  MySchool.View.Reports.Template in 'src\View\Reports\MySchool.View.Reports.Template.pas' {RelTemplate};
 
 {$R *.res}
 

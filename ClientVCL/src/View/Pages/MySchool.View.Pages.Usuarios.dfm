@@ -162,8 +162,6 @@ inherited PageUsuarios: TPageUsuarios
             ExplicitWidth = 296
             inherited pnContentLeftBottom: TPanel
               Width = 296
-              ExplicitLeft = -1
-              ExplicitTop = 592
               ExplicitWidth = 296
               inherited btnPrevious: TSpeedButton
                 Left = 197
@@ -172,8 +170,7 @@ inherited PageUsuarios: TPageUsuarios
               end
               inherited lbPagination: TLabel
                 Left = 220
-                ExplicitLeft = 214
-                ExplicitHeight = 41
+                ExplicitLeft = 220
               end
               inherited btnNext: TSpeedButton
                 Left = 273

@@ -79,36 +79,47 @@ type
     edtSearch: TEdit;
 
     ImageList1: TImageList;
-    ImageList2: TImageList;
     Image1: TImage;
 
     SpeedButton3: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton1: TSpeedButton;
 
-    btnInsert: TSpeedButton;
-    btnRefresh: TSpeedButton;
-
-    Bevel1: TBevel;
-
+    [AdjustResponsive]
     [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H6, STYLE_FONT_COLOR4, FONT_NAME )]
     dbGridContent: TDBGrid;
 
+    [ImageAttribute('btn_add')]
+    btnInsert: TSpeedButton;
+
+    [ImageAttribute('btn_save')]
+    btnSave: TSpeedButton;
+
+    [ImageAttribute('btn_update')]
+    btnRefresh: TSpeedButton;
+
+    [ImageAttribute('btn_delete')]
+    btnDelete: TSpeedButton;
+
     pnlContentRightButtons: TPanel;
     btnClose: TSpeedButton;
-    btnSave: TSpeedButton;
+
     DataSource1: TDataSource;
-    btnDelete: TSpeedButton;
+
     pnlContentLeft: TPanel;
     pnContentLeftBottom: TPanel;
     btnPrevious: TSpeedButton;
     lbPagination: TLabel;
     btnNext: TSpeedButton;
+    Panel1: TPanel;
+    SpeedButton4: TSpeedButton;
+
+
+
 
 
     procedure FormCreate(Sender: TObject);
     procedure btnInsertClick(Sender: TObject);
-    procedure FormResize(Sender: TObject);
     procedure dbGridContentDblClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
@@ -215,6 +226,7 @@ procedure TFormTemplate.edtSearchKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #$D then
   begin
+  Key := #$0;
     FDAO
       .AddParam('sort', FSort)
       .AddParam('order', FOrder)
@@ -239,13 +251,11 @@ begin
        .Form(Self)
        .BindFormDefault(FTitle)
        .BindFormRest(FEndPoint, FPK, FSort, FOrder)
+       .SetCaptionComponents
+       .SetImageComponents
        .SetStyleComponents;
 
   ApplyStyle;
-end;
-
-procedure TFormTemplate.FormResize(Sender: TObject);
-begin
   GetEndPoint;
 end;
 
@@ -305,7 +315,7 @@ end;
 
 procedure TFormTemplate.formatList;
 begin
-  TBind4D.New.Form(Self).BindFormatListDataSet(FDAO.DataSet, dbGridContent);
+  TBind4D.New.Form(Self).BindFormatListDataSet(FDAO.DataSet, dbGridContent).ResponsiveAdjustment;
   lbPagination.Caption := 'Página ' + FDAO.Page.ToString + ' de ' + FDAO.Pages.ToString;
 end;
 

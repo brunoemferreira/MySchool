@@ -373,6 +373,8 @@ object formPrincipal: TformPrincipal
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 0
+        ExplicitLeft = 6
+        ExplicitTop = 4
       end
       object pnlPrincipal: TPanel
         Left = 0

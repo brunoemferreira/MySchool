@@ -124,6 +124,26 @@
         <DCCReference Include="src\Model\DAO\MySchool.Model.DAO.Interfaces.pas"/>
         <DCCReference Include="src\Model\DAO\MySchool.Model.DAO.REST.pas"/>
         <DCCReference Include="src\Model\Services\MySchool.Model.Services.Register.pas"/>
+        <DCCReference Include="src\View\Reports\MySchool.View.Reports.Template.pas">
+            <Form>RelTemplate</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <RcItem Include="C:\Users\bruno\Downloads\add.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>btn_add</ResourceId>
+        </RcItem>
+        <RcItem Include="C:\Users\bruno\Downloads\delete (1).png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>btn_delete</ResourceId>
+        </RcItem>
+        <RcItem Include="C:\Users\bruno\Downloads\refresh-page-option.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>btn_update</ResourceId>
+        </RcItem>
+        <RcItem Include="C:\Users\bruno\Downloads\save.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>btn_save</ResourceId>
+        </RcItem>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -150,9 +170,33 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="C:\Users\bruno\Downloads\refresh-page-option.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Win32\Debug\MySchool.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>MySchool.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\bruno\Downloads\add.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\bruno\Downloads\delete (1).png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\bruno\Downloads\save.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -958,9 +1002,9 @@
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
