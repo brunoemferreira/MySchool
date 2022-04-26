@@ -57,6 +57,9 @@ type
     [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H8, STYLE_FONT_COLOR3, FONT_NAME )]
     lblPhone: TLabel;
 
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H8, STYLE_FONT_COLOR3, FONT_NAME )]
+    lblCargo: TLabel;
+
     [FieldJsonBind('guuid'), FbIgnorePost, FbIgnorePut]
     [FieldDataSetBind('guuid', ftString, False, 0, 'Código')]
     [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H8, STYLE_FONT_COLOR3, FONT_NAME )]
@@ -77,6 +80,12 @@ type
     [FieldDataSetBind('phone', ftString, True, 14, 'Telefone', '!\(##\) #####-####;0;_')]
     [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H8, STYLE_FONT_COLOR3, FONT_NAME, teCell )]
     edtPhone: TEdit;
+
+    [FieldJsonBind('cargo')]
+    [FieldDataSetBind('cargo', ftString, True, 35, 'Cargo')]
+    [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H8, STYLE_FONT_COLOR3, FONT_NAME )]
+    [fvNotNull('O Campo Cargo não pode ser vazio!', STYLE_DANGER )]
+    edtCargo: TEdit;
 
     [FieldJsonBind('picture')]
     [FieldDataSetBind('picture', ftString, False)]

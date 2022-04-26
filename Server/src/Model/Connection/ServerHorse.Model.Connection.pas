@@ -45,14 +45,16 @@ begin
 
     FConnList.Add(TFDConnection.Create(nil));
     IndexConn := Pred(FConnList.Count);
-    FConnList.Items[IndexConn].Params.DriverID := 'SQLite';
-    FConnList.Items[IndexConn].Params.Database := 'D:\Repositories\MySchool\Server\database\SimpleProject.db3';
-    //FConnList.Items[IndexConn].Params.UserName := 'user';
-    //1FConnList.Items[IndexConn].Params.Password := 'password';
-    //FConnList.Items[IndexConn].Params.Add('Port=3306');
-    //FConnList.Items[IndexConn].Params.Add('CharacterSet=utf8');
-    //FConnList.Items[IndexConn].Params.Add('Server=xxx');
+    //FConnList.Items[IndexConn].Params.DriverID := 'SQLite';
+    FConnList.Items[IndexConn].Params.DriverID := 'MySQL';
+    //FConnList.Items[IndexConn].Params.Database := '..\..\database\SimpleProject.db3';
+    FConnList.Items[IndexConn].Params.UserName := 'bruno';
+    FConnList.Items[IndexConn].Params.Password := '123456';
+    FConnList.Items[IndexConn].Params.Add('Port=3306');
+    FConnList.Items[IndexConn].Params.Add('CharacterSet=utf8');
+    FConnList.Items[IndexConn].Params.Add('Server=localhost');
     FConnList.Items[IndexConn].Params.Add('LockingMode=Normal');
+    FConnList.Items[IndexConn].Params.Add('Database=MySchool');
     FConnList.Items[IndexConn].Connected;
   Result := IndexConn;
 end;

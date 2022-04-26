@@ -89,16 +89,16 @@ type
     [ComponentBindStyle( STYLE_COLOR_BACKGROUND, FONT_H6, STYLE_FONT_COLOR4, FONT_NAME )]
     dbGridContent: TDBGrid;
 
-    [ImageAttribute('btn_add')]
+    [ImageAttribute('btn_Insert2')]
     btnInsert: TSpeedButton;
 
-    [ImageAttribute('btn_save')]
+  //  [ImageAttribute('btn_save')]
     btnSave: TSpeedButton;
 
-    [ImageAttribute('btn_update')]
+   // [ImageAttribute('btn_update')]
     btnRefresh: TSpeedButton;
 
-    [ImageAttribute('btn_delete')]
+   // [ImageAttribute('btn_delete')]
     btnDelete: TSpeedButton;
 
     pnlContentRightButtons: TPanel;
@@ -114,10 +114,6 @@ type
     Panel1: TPanel;
     SpeedButton4: TSpeedButton;
 
-
-
-
-
     procedure FormCreate(Sender: TObject);
     procedure btnInsertClick(Sender: TObject);
     procedure dbGridContentDblClick(Sender: TObject);
@@ -129,6 +125,7 @@ type
     procedure edtSearchKeyPress(Sender: TObject; var Key: Char);
     procedure btnPreviousClick(Sender: TObject);
     procedure btnNextClick(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
   private
     { Private declarations }
     FTypeOperation : TTypeOperation;
@@ -288,6 +285,12 @@ begin
   GetEndPoint;
   alterListForm;
   FTypeOperation := toNull;
+end;
+
+procedure TFormTemplate.SpeedButton4Click(Sender: TObject);
+begin
+  edtSearch.Text := '';
+  GetEndPoint;
 end;
 
 procedure TFormTemplate.btnNextClick(Sender: TObject);

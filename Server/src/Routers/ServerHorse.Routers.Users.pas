@@ -40,14 +40,11 @@ begin
       iController.This
         .DAO
           .SQL
-            .Fields('USERS.*, ')
-            .Fields('OCCUPATION.DESCRIPTION AS OCCUPATION ')
+            .Fields('users.*')
             .Where(TServerUtils.New.LikeFind(Req))
-            .Join('LEFT JOIN OCCUPATION ON OCCUPATION.GUUID = USERS.IDOCCUPATION')
             .OrderBy(TServerUtils.New.OrderByFind(Req))
           .&End
         .Find(False);
-
       Res.Send<TJsonArray>(iController.This.DataSetAsJsonArray);
     end)
 

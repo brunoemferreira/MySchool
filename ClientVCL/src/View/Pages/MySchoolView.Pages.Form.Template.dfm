@@ -222,7 +222,6 @@ object FormTemplate: TFormTemplate
           Padding.Right = 3
           ParentBackground = False
           TabOrder = 0
-          ExplicitTop = 5
           object pnlSearch: TPanel
             Left = 912
             Top = 0
@@ -230,6 +229,7 @@ object FormTemplate: TFormTemplate
             Height = 40
             Align = alRight
             BevelOuter = bvNone
+            Padding.Bottom = 5
             ParentBackground = False
             TabOrder = 0
             object lbSearch: TLabel
@@ -251,24 +251,25 @@ object FormTemplate: TFormTemplate
               Left = 200
               Top = 12
               Width = 33
-              Height = 28
+              Height = 23
+              Cursor = crHandPoint
               Align = alRight
               Flat = True
+              OnClick = SpeedButton4Click
               ExplicitLeft = 216
               ExplicitTop = 6
+              ExplicitHeight = 28
             end
             object edtSearch: TEdit
               Left = 0
               Top = 12
               Width = 200
-              Height = 28
+              Height = 23
               Align = alClient
               Ctl3D = True
               ParentCtl3D = False
               TabOrder = 0
               OnKeyPress = edtSearchKeyPress
-              ExplicitLeft = -143
-              ExplicitTop = 18
             end
           end
           object pnlButtons: TPanel
@@ -282,7 +283,6 @@ object FormTemplate: TFormTemplate
             Padding.Bottom = 6
             ParentBackground = False
             TabOrder = 1
-            ExplicitLeft = 4
             object btnInsert: TSpeedButton
               Left = 0
               Top = 6
@@ -358,8 +358,6 @@ object FormTemplate: TFormTemplate
           BevelOuter = bvNone
           ParentBackground = False
           TabOrder = 1
-          ExplicitTop = 75
-          ExplicitHeight = 629
           object pnlContentRight: TPanel
             Left = 568
             Top = 0
@@ -369,7 +367,6 @@ object FormTemplate: TFormTemplate
             BevelOuter = bvNone
             ParentBackground = False
             TabOrder = 0
-            ExplicitHeight = 629
             object pnlContentRightButtons: TPanel
               Left = 0
               Top = 595
@@ -382,7 +379,6 @@ object FormTemplate: TFormTemplate
               Padding.Bottom = 6
               ParentBackground = False
               TabOrder = 0
-              ExplicitTop = 591
               object btnClose: TSpeedButton
                 Left = 491
                 Top = 6
@@ -439,7 +435,6 @@ object FormTemplate: TFormTemplate
             BevelOuter = bvNone
             ParentBackground = False
             TabOrder = 1
-            ExplicitHeight = 629
             object pnContentLeftBottom: TPanel
               Left = 0
               Top = 592
@@ -449,7 +444,6 @@ object FormTemplate: TFormTemplate
               BevelOuter = bvNone
               ParentBackground = False
               TabOrder = 0
-              ExplicitTop = 588
               object btnPrevious: TSpeedButton
                 Left = 469
                 Top = 0
@@ -520,7 +514,6 @@ object FormTemplate: TFormTemplate
           Color = 14211288
           ParentBackground = False
           TabOrder = 2
-          ExplicitTop = 45
         end
       end
     end

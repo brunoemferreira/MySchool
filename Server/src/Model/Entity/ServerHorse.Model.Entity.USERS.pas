@@ -9,28 +9,20 @@ type
   [Tabela('Users')]
   TUsers = class
   private
-    FNAME :String;
-    FPHONE :String;
-    FOCCUPATION :String;
-    FGUUID: String;
-    FBALANCE: Currency;
-    FBIRTHDATE: TDateTime;
-    FLASTTRANSACTION: TDateTime;
-    FCPF: String;
-    FCNPJ: String;
+    FNAME : String;
+    FCARGO : String;
+    FPHONE : String;
+    FGUUID : String;
+    FCPF : String;
     FPICTURE: string;
     procedure SetNAME (const Value :String);
     function GetNAME :String;
+    procedure SetCARGO (const Value :String);
+    function GetCARGO : String;
     procedure SetPHONE (const Value :String);
     function GetPHONE :String;
-    procedure SetOCCUPATION (const Value :String);
-    function GetOCCUPATION :String;
     procedure SetGUUID(const Value: String);
-    procedure SetBALANCE(const Value: Currency);
-    procedure SetBIRTHDATE(const Value: TDateTime);
-    procedure SetLASTTRANSACTION(const Value: TDateTime);
     procedure SetCPF(const Value: String);
-    procedure SetCNPJ(const Value: String);
     function GetGUUID: String;
     procedure SetPICTURE(const Value: string);
   public
@@ -38,22 +30,14 @@ type
     destructor Destroy; override;
     [Campo('GUUID'), Pk]
     property GUUID : String read GetGUUID write SetGUUID;
+    [Campo('CARGO')]
+    property CARGO : String read GetCARGO write SetCARGO;
     [Campo('NAME')]
     property NAME :String read GetNAME write SetNAME;
     [Campo('PHONE')]
     property PHONE :String read GetPHONE write SetPHONE;
-    [Campo('IDOCCUPATION')]
-    property IDOCCUPATION :String read GetOCCUPATION write SetOCCUPATION;
-    [Campo('BALANCE')]
-    property BALANCE : Currency read FBALANCE write SetBALANCE;
-    [Campo('BIRTHDATE')]
-    property BIRTHDATE : TDateTime read FBIRTHDATE write SetBIRTHDATE;
-    [Campo('LASTTRANSACTION')]
-    property LASTTRANSACTION : TDateTime read FLASTTRANSACTION write SetLASTTRANSACTION;
     [Campo('CPF')]
     property CPF : String read FCPF write SetCPF;
-    [Campo('CNPJ')]
-    property CNPJ : String read FCNPJ write SetCNPJ;
     [Campo('PICTURE')]
     property PICTURE : string read FPICTURE write SetPICTURE;
 end;
@@ -79,24 +63,9 @@ begin
   FGUUID := Value;
 end;
 
-procedure TUsers.SetLASTTRANSACTION(const Value: TDateTime);
+procedure TUsers.SetCARGO(const Value: String);
 begin
-  FLASTTRANSACTION := Value;
-end;
-
-procedure TUsers.SetBALANCE(const Value: Currency);
-begin
-  FBALANCE := Value;
-end;
-
-procedure TUsers.SetBIRTHDATE(const Value: TDateTime);
-begin
-  FBIRTHDATE := Value;
-end;
-
-procedure TUsers.SetCNPJ(const Value: String);
-begin
-  FCNPJ := Value;
+  FCARGO := Value;
 end;
 
 procedure TUsers.SetCPF(const Value: String);
@@ -107,6 +76,11 @@ end;
 procedure TUsers.SetNAME (const Value :String);
 begin
   FNAME := Value;
+end;
+
+function TUsers.GetCARGO: String;
+begin
+  Result := FCARGO;
 end;
 
 function TUsers.GetGUUID: String;
@@ -132,16 +106,6 @@ end;
 function TUsers.GetPHONE :String;
 begin
   Result := FPHONE;
-end;
-
-procedure TUsers.SetOCCUPATION (const Value :String);
-begin
-  FOCCUPATION := Value;
-end;
-
-function TUsers.GetOCCUPATION :String;
-begin
-  Result := FOCCUPATION;
 end;
 
 end.

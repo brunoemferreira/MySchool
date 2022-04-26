@@ -3,9 +3,39 @@ inherited PageUsuarios: TPageUsuarios
   PixelsPerInch = 96
   TextHeight = 15
   inherited pnlPrincipal: TPanel
+    inherited pnlTop: TPanel
+      inherited pnlButtonsTop: TPanel
+        inherited pnlButtonsTopContainer: TPanel
+          inherited Label2: TLabel
+            Height = 44
+          end
+          inherited lbTitle: TLabel
+            Height = 44
+          end
+        end
+      end
+    end
     inherited pnlMain: TPanel
       inherited pnlContent: TPanel
+        inherited pnlContentTop: TPanel
+          ExplicitTop = 0
+          inherited pnlSearch: TPanel
+            inherited lbSearch: TLabel
+              Width = 233
+            end
+            inherited edtSearch: TEdit
+              ExplicitLeft = 0
+              ExplicitTop = 12
+              ExplicitHeight = 23
+            end
+          end
+          inherited pnlButtons: TPanel
+            ExplicitLeft = 6
+          end
+        end
         inherited pnlContentIntern: TPanel
+          ExplicitTop = 41
+          ExplicitHeight = 633
           inherited pnlContentRight: TPanel
             Left = 296
             Width = 852
@@ -14,12 +44,13 @@ inherited PageUsuarios: TPageUsuarios
             Padding.Bottom = 5
             ExplicitLeft = 296
             ExplicitWidth = 852
+            ExplicitHeight = 633
             inherited pnlContentRightButtons: TPanel
               Left = 5
-              Top = 586
+              Top = 590
               Width = 842
               ExplicitLeft = 5
-              ExplicitTop = 586
+              ExplicitTop = 590
               ExplicitWidth = 842
               inherited btnClose: TSpeedButton
                 Left = 753
@@ -34,7 +65,7 @@ inherited PageUsuarios: TPageUsuarios
               Left = 5
               Top = 0
               Width = 842
-              Height = 586
+              Height = 590
               ActivePage = TabSheet1
               Align = alClient
               TabOrder = 1
@@ -44,7 +75,7 @@ inherited PageUsuarios: TPageUsuarios
                   Left = 289
                   Top = 0
                   Width = 393
-                  Height = 556
+                  Height = 560
                   Align = alLeft
                   BevelOuter = bvNone
                   ControlCollection = <
@@ -59,6 +90,12 @@ inherited PageUsuarios: TPageUsuarios
                     end
                     item
                       Control = edtName
+                    end
+                    item
+                      Control = lblCargo
+                    end
+                    item
+                      Control = edtCargo
                     end
                     item
                       Control = lblCPF
@@ -102,30 +139,44 @@ inherited PageUsuarios: TPageUsuarios
                     Height = 23
                     TabOrder = 1
                   end
-                  object lblCPF: TLabel
+                  object lblCargo: TLabel
                     Left = 0
                     Top = 84
+                    Width = 393
+                    Height = 15
+                    Caption = 'Cargo'
+                  end
+                  object edtCargo: TEdit
+                    Left = 0
+                    Top = 101
+                    Width = 393
+                    Height = 23
+                    TabOrder = 4
+                  end
+                  object lblCPF: TLabel
+                    Left = 0
+                    Top = 126
                     Width = 393
                     Height = 15
                     Caption = 'CPF'
                   end
                   object edtCPF: TEdit
                     Left = 0
-                    Top = 101
+                    Top = 143
                     Width = 393
                     Height = 23
                     TabOrder = 2
                   end
                   object lblPhone: TLabel
                     Left = 0
-                    Top = 126
+                    Top = 168
                     Width = 393
                     Height = 15
                     Caption = 'Telefone'
                   end
                   object edtPhone: TEdit
                     Left = 0
-                    Top = 143
+                    Top = 185
                     Width = 393
                     Height = 23
                     TabOrder = 3
@@ -135,7 +186,7 @@ inherited PageUsuarios: TPageUsuarios
                   Left = 0
                   Top = 0
                   Width = 289
-                  Height = 556
+                  Height = 560
                   Align = alLeft
                   BevelOuter = bvNone
                   ControlCollection = <
@@ -160,8 +211,10 @@ inherited PageUsuarios: TPageUsuarios
           inherited pnlContentLeft: TPanel
             Width = 296
             ExplicitWidth = 296
+            ExplicitHeight = 633
             inherited pnContentLeftBottom: TPanel
               Width = 296
+              ExplicitTop = 592
               ExplicitWidth = 296
               inherited btnPrevious: TSpeedButton
                 Left = 197
@@ -170,6 +223,7 @@ inherited PageUsuarios: TPageUsuarios
               end
               inherited lbPagination: TLabel
                 Left = 220
+                Height = 41
                 ExplicitLeft = 220
               end
               inherited btnNext: TSpeedButton
@@ -181,6 +235,9 @@ inherited PageUsuarios: TPageUsuarios
               Width = 296
             end
           end
+        end
+        inherited Panel1: TPanel
+          ExplicitTop = 40
         end
       end
     end
